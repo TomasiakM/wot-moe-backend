@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import routes from "./routes";
 import mongoose from "mongoose";
 import path from "path";
+import cors from "cors";
 
 const app = express();
 dotenv.config();
@@ -11,6 +12,8 @@ mongoose.connect(`${process.env.MONGODB_URI}`, (err) => {
 	if (err) return console.log("DB connection error: ", err);
 	console.log("Connected to DB!");
 });
+
+app.use(cors());
 
 app.use(express.static("public"));
 
